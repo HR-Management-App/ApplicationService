@@ -32,18 +32,17 @@ public abstract class AbstractHibernateDao<T> {
         return getCurrentSession().get(clazz, id);
     }
 
-    public Optional<T> findByEmail(String email) {
+    public Optional<T> findApplicationByEmployeeID(int employee_id) {
         Session session = getCurrentSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(clazz);
         Root<T> root = criteria.from(clazz);
         criteria.select(root);
-        criteria.where(builder.equal(root.get("email"), email));
+        criteria.where(builder.equal(root.get("employee_id"), employee_id));
         Optional<T> possibleObject = Optional.empty();
         if (session.createQuery(criteria).getResultList().size() != 0) {
             possibleObject = Optional.of(session.createQuery(criteria).getResultList().get(0));
         }
-
         return possibleObject;
     }
 

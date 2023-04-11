@@ -3,8 +3,7 @@ spring:
     name: application-service
   mvc:
     servlet:
-      path: /application-service # // localhost:8080/application-service/application-service
-
+      path: /application-service # // localhost:8111/application-service/application-service
 
 server:
   port: 8111

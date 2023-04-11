@@ -3,10 +3,9 @@ package com.beaconfire.applicationservice.controller;
 import com.beaconfire.applicationservice.domain.entity.ApplicationWorkFlow;
 import com.beaconfire.applicationservice.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +19,15 @@ public class ApplicationController {
         this.service = service;
     }
 
-    @GetMapping()
-    public ApplicationWorkFlow getAppInfo() {
-        return service.getApplicationById(1);
+    @GetMapping("/status")
+    public ResponseEntity<ApplicationWorkFlow> getAppInfo(@RequestParam(value = "employee_id") int employee_id) {
+        return new ResponseEntity<>(service.getApplicationByEmployeeID(employee_id), HttpStatus.OK);
+    }
+
+    @GetMapping("/create")
+    public ResponseEntity<Integer> createNewApplication(@RequestParam(value = "employee_id") int employee_id) {
+        int app_id =  service.createNewApplication(employee_id);
+        return new ResponseEntity<>(app_id, HttpStatus.OK);
     }
 
 }

@@ -21,13 +21,13 @@ public class ApplicationWorkFlow {
     private int id;
 
     @Column(name = "employee_id")
-    private int employeeID;
+    private int employee_id;
 
     @Column(name = "create_date")
-    private Date createDate;
+    private Date create_date;
 
     @Column(name = "last_modification_date")
-    private Date lastModificationDate;
+    private Date last_modification_date;
 
     @Column(name = "status")
     private String status;
