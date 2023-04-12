@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "digitaldocument")
+@Table(name = "digital_document")
 @Getter
 @Setter
 @ToString
@@ -16,13 +16,12 @@ public class DigitalDocument {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int digitalDocumentID;
+    private int id;
 
     @Column(name = "type")
     private String type;
     @Column(name = "is_required")
-    private boolean isRequired;
+    private boolean is_required;
     @Column(name = "path")
     private String path;
     @Column(name = "description")

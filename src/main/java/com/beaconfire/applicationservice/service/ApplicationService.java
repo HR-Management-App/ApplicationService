@@ -2,6 +2,7 @@ package com.beaconfire.applicationservice.service;
 
 import com.beaconfire.applicationservice.dao.ApplicationDao;
 import com.beaconfire.applicationservice.domain.entity.ApplicationWorkFlow;
+import com.beaconfire.applicationservice.domain.entity.DigitalDocument;
 import com.beaconfire.applicationservice.domain.misc.ApplicationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import java.util.Optional;
 @Service
 public class ApplicationService {
     private ApplicationDao appDao;
-    private int employeeId;
 
     @Autowired
     public void setAppDao(ApplicationDao appDao) {this.appDao = appDao;}
@@ -32,4 +32,10 @@ public class ApplicationService {
     public int createNewApplication(int employee_id) {
         return appDao.createNewApplication(employee_id);
     }
+
+    @Transactional
+    public ApplicationWorkFlow updateApplication(int app_id, String status) {
+        return appDao.updateApplication(app_id, status);
+    }
+
 }
