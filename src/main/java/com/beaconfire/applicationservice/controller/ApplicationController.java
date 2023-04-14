@@ -2,6 +2,7 @@ package com.beaconfire.applicationservice.controller;
 
 import com.beaconfire.applicationservice.domain.entity.ApplicationWorkFlow;
 import com.beaconfire.applicationservice.domain.entity.DigitalDocument;
+import com.beaconfire.applicationservice.domain.request.ApplicationUpdateRequest;
 import com.beaconfire.applicationservice.service.ApplicationService;
 import com.beaconfire.applicationservice.service.DigitalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class ApplicationController {
         return new ResponseEntity<>(app_id, HttpStatus.OK);
     }
 
-    @PutMapping("/update/{app_id}/{status}")
-    public ResponseEntity<ApplicationWorkFlow> updateApplication(@PathVariable int app_id, @PathVariable String status) {
-       return new ResponseEntity<>(service.updateApplication(app_id, status), HttpStatus.OK);
+    @PutMapping("/update")
+    public ResponseEntity<ApplicationWorkFlow> updateApplication(@RequestBody ApplicationUpdateRequest request) {
+       return new ResponseEntity<>(service.updateApplication(request), HttpStatus.OK);
     }
 
     @GetMapping("/digital")

@@ -4,6 +4,7 @@ import com.beaconfire.applicationservice.dao.ApplicationDao;
 import com.beaconfire.applicationservice.domain.entity.ApplicationWorkFlow;
 import com.beaconfire.applicationservice.domain.entity.DigitalDocument;
 import com.beaconfire.applicationservice.domain.misc.ApplicationStatus;
+import com.beaconfire.applicationservice.domain.request.ApplicationUpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +35,8 @@ public class ApplicationService {
     }
 
     @Transactional
-    public ApplicationWorkFlow updateApplication(int app_id, String status) {
-        return appDao.updateApplication(app_id, status);
+    public ApplicationWorkFlow updateApplication(ApplicationUpdateRequest request) {
+        return appDao.updateApplication(request);
     }
 
 }

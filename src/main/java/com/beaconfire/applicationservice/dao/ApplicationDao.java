@@ -2,6 +2,7 @@ package com.beaconfire.applicationservice.dao;
 
 import com.beaconfire.applicationservice.domain.entity.ApplicationWorkFlow;
 import com.beaconfire.applicationservice.domain.misc.ApplicationStatus;
+import com.beaconfire.applicationservice.domain.request.ApplicationUpdateRequest;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -37,11 +38,12 @@ public class ApplicationDao extends AbstractHibernateDao<ApplicationWorkFlow> {
         return app_id;
     }
 
-    public ApplicationWorkFlow updateApplication(int app_id, String status) {
+    public ApplicationWorkFlow updateApplication(ApplicationUpdateRequest request) {
         Session session = getCurrentSession();
-        ApplicationWorkFlow app = this.findById(app_id);
+        ApplicationWorkFlow app = this.findById(request.getId());
         app.setLast_modification_date(new Date());
-        app.setStatus(status);
+        app.setStatus(request.getStatus());
+        app.setComment(request.getComment());
         session.save(app);
         return app;
     }
